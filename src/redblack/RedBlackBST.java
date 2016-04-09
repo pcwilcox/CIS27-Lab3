@@ -26,6 +26,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         }
     }
 
+    public RedBlackBST() {
+        root = null;
+    }
+
     private boolean isRed(Node n)
     {
         if (n == null) return false;
@@ -115,6 +119,14 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         else return size(n.left);
     }
 
+    public String toString() {
+        return toStringHelper(root);
+    }
+
+    private String toStringHelper(Node n) {
+        if (n == null) return "";
+        return toStringHelper(n.left) + "[" + n.key + "," + n.weight + "]" + toStringHelper(n.right);
+    }
 
 
     public int size()
@@ -242,7 +254,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
             {
                 Node m = min(n.right);
                 n.key = m.key;
-                m.val = m.val;
+                n.val = m.val;
                 n.right = deleteMin(n.right);
             } else n.right = delete(n.right, k);
         }
