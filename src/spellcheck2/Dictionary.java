@@ -1,5 +1,7 @@
 package spellcheck2;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -8,45 +10,70 @@ import java.util.Scanner;
  */
 public class Dictionary
 {
-    private static final int M = 997;
-    private List[] words;
+    private int M;
+    private int N;
+    private ListOfWords[] words;
 
     public Dictionary() {
-        words = new List[M];
-        for (int i = 0; i < M; i++)
-            words[i] = new List();
+        this(13);
+    }
 
+    public Dictionary(int capacity)
+    {
+        words = new ListOfWords[capacity];
+        for (int i = 0; i < capacity; i++)
+            words[i] = new ListOfWords();
+
+        M = capacity;
         readWords();
     }
 
-    private void readWords() {
+    private void readWords()
+    {
         // read list of words from file into the dictionary
-        Scanner in = new Scanner("words.txt");
-        in.useDelimiter("\n");
-        while (in.hasNext()) {
-            String token = in.next();
-            put(token);
+        File wordlist = new File("C:\\Users\\Pete\\IdeaProjects\\CIS27-Lab3\\src\\spellcheck2\\words.txt");
+
+        try
+        {
+            Scanner in = new Scanner(wordlist);
+            in.useDelimiter("\r\n");
+            while (in.hasNext())
+            {
+                String token = in.next();
+                put(token);
+            }
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
         }
     }
 
-    public void put(String word) {
+    public void put(String word)
+    {
+        if (N > M / 2) resize(2 * M);
+        System.out.println("Adding " + word + " with hash code " + hash(word) + ".");
         words[hash(word)].put(word);
+        N++;
     }
 
-    private int hash(String word) {
+    private int hash(String word)
+    {
         return (word.hashCode() & 0x7fffffff) % M;
     }
 
-    public String get(String word) {
+    public String get(String word)
+    {
         return (String) words[hash(word)].get(word);
     }
 
-    public String match(String input) {
+    public String match(String input)
+    {
         if (input.equals(get(input))) return input;
         return mix(input);
     }
 
-    private String mix(String input) {
+    private String mix(String input)
+    {
         // apply the various transpositions etc and see what comes up
         String possibles = "";
         /* TODO:
@@ -59,4 +86,14 @@ public class Dictionary
         return possibles;
     }
 
+    private void resize(int capacity)
+    {
+        Dictionary temp = new Dictionary(capacity);
+
+        for (int i = 0; i < M; i++) {
+            while (!words[i].isEmpty()) {
+                temp.put(words[i].pop());
+            }
+        }
+    }
 }

@@ -4,7 +4,7 @@ package spellcheck2;
  * Created by Pete Wilcox on 4/23/2016.
  * petercwilcox@gmail.com
  */
-public class List
+public class ListOfWords
 {
     Node first;
     private int size;
@@ -28,6 +28,15 @@ public class List
         size++;
     }
 
+    public String pop()
+    {
+        if (first == null) return null;
+        Node temp = first;
+        first = first.next;
+        size--;
+        return temp.word;
+    }
+
     public String get(String word)
     {
         for (Node temp = first; temp != null; temp = temp.next)
@@ -37,11 +46,13 @@ public class List
 
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty()
+    {
         return size == 0;
     }
 
-    public List() {
+    public ListOfWords()
+    {
         size = 0;
     }
 
