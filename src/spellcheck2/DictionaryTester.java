@@ -10,6 +10,8 @@ public class DictionaryTester
         System.out.println("Creating dictionary...");
         Dictionary dict = new Dictionary();
 
-        System.out.println(dict.get("aardvark"));
+        System.out.println(dict.match("aardvark"));
+        System.out.println(dict.match("mtah"));
+        System.out.println(dict.match("wette"));
     }
 }
