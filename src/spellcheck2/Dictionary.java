@@ -1,5 +1,7 @@
 package spellcheck2;
 
+import java.util.Scanner;
+
 /**
  * Created by Pete Wilcox on 4/23/2016.
  * petercwilcox@gmail.com
@@ -19,9 +21,12 @@ public class Dictionary
 
     private void readWords() {
         // read list of words from file into the dictionary
-        /* TODO:
-        file.io to input list of words
-         */
+        Scanner in = new Scanner("words.txt");
+        in.useDelimiter("\n");
+        while (in.hasNext()) {
+            String token = in.next();
+            put(token);
+        }
     }
 
     public void put(String word) {
