@@ -11,11 +11,10 @@ import java.util.Scanner;
 public class Dictionary
 {
     private int M;
-    private int N;
     private ListOfWords[] words;
 
     public Dictionary() {
-        this(13);
+        this(33617); // arbitrary prime number
     }
 
     public Dictionary(int capacity)
@@ -50,10 +49,8 @@ public class Dictionary
 
     public void put(String word)
     {
-        if (N > M / 2) resize(2 * M);
         System.out.println("Adding " + word + " with hash code " + hash(word) + ".");
         words[hash(word)].put(word);
-        N++;
     }
 
     private int hash(String word)
@@ -86,14 +83,4 @@ public class Dictionary
         return possibles;
     }
 
-    private void resize(int capacity)
-    {
-        Dictionary temp = new Dictionary(capacity);
-
-        for (int i = 0; i < M; i++) {
-            while (!words[i].isEmpty()) {
-                temp.put(words[i].pop());
-            }
-        }
-    }
 }
