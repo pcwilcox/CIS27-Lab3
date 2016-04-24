@@ -3,7 +3,10 @@ package spellcheck2;
 /**
  * Created by Pete Wilcox on 4/23/2016.
  * petercwilcox@gmail.com
+ *
+ * This is just a simple string-based bag class
  */
+
 public class ListOfWords
 {
     Node first;
@@ -21,6 +24,7 @@ public class ListOfWords
         }
     }
 
+    // Push a word to the list
     public void put(String word)
     {
         Node temp = new Node(word, first);
@@ -28,15 +32,7 @@ public class ListOfWords
         size++;
     }
 
-    public String pop()
-    {
-        if (first == null) return null;
-        Node temp = first;
-        first = first.next;
-        size--;
-        return temp.word;
-    }
-
+    // Search for a word on the list
     public String get(String word)
     {
         for (Node temp = first; temp != null; temp = temp.next)
