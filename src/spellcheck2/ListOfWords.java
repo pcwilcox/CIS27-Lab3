@@ -39,7 +39,6 @@ public class ListOfWords
             if (word.equals(temp.word)) return temp.word;
 
         return null;
-
     }
 
     public boolean isEmpty()
@@ -51,5 +50,4 @@ public class ListOfWords
     {
         size = 0;
     }
-
 }

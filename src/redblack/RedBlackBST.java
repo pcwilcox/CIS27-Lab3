@@ -126,7 +126,9 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         if (n == null) return 0;
         int cmp = k.compareTo(n.key);
         if (cmp < 0) return rank(k, n.left);
-        else if (cmp > 0) return 1 + size(n.left) + rank(k, n.right);
+        else if (cmp > 0) return 1 +
+                                 size(n.left) +
+                                 rank(k, n.right);
         else return size(n.left);
     }
 
@@ -137,7 +139,9 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
     // In-order string converter
     private String toStringHelper(Node n) {
         if (n == null) return "";
-        return toStringHelper(n.left) + "[" + n.key + "," + n.weight + "," + n.color + "]" + toStringHelper(n.right);
+        return toStringHelper(n.left) + "[" + n.key + "," +
+               n.weight + "," + n.color + "]" +
+               toStringHelper(n.right);
     }
 
     // Return size of tree
@@ -167,9 +171,12 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         if (cmp < 0) n.left = put(n.left, k, v);
         else if (cmp > 0) n.right = put(n.right, k, v);
         else n.val = v;
-        if (isRed(n.right) && !isRed(n.left)) n = rotateLeft(n);
-        if (isRed(n.left) && isRed(n.left.left)) n = rotateRight(n);
-        if (isRed(n.left) && isRed(n.right)) flipColors(n);
+        if (isRed(n.right) && !isRed(n.left))
+            n = rotateLeft(n);
+        if (isRed(n.left) && isRed(n.left.left))
+            n = rotateRight(n);
+        if (isRed(n.left) && isRed(n.right))
+            flipColors(n);
         n.weight = size(n.left) + size(n.right) + 1;
         return n;
     }
@@ -201,7 +208,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
     private Node deleteMin(Node n)
     {
         if (n.left == null) return null;
-        if (!isRed(n.left) && !isRed(n.left.left)) n = moveRedLeft(n);
+        if (!isRed(n.left) && !isRed(n.left.left))
+            n = moveRedLeft(n);
         n.left = deleteMin(n.left);
         return balance(n);
     }
@@ -209,8 +217,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
     private Node balance(Node n)
     {
         if (isRed(n.right)) n = rotateLeft(n);
-        if (isRed(n.left) && isRed(n.left.left)) n = rotateRight(n);
-        if (isRed(n.left) && isRed(n.right)) flipColors(n);
+        if (isRed(n.left) && isRed(n.left.left))
+            n = rotateRight(n);
+        if (isRed(n.left) && isRed(n.right))
+            flipColors(n);
         n.weight = size(n.left) + size(n.right) + 1;
         return n;
     }
@@ -231,7 +241,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
 
     public void deleteMax()
     {
-        if (!isRed(root.left) && !isRed(root.right)) root.color = RED;
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
         root = deleteMax(root);
         if (!isEmpty()) root.color = BLACK;
     }
@@ -240,7 +251,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
     {
         if (isRed(n.left)) n = rotateRight(n);
         if (n.right == null) return null;
-        if (!isRed(n.right) && !isRed(n.right.left)) n = moveRedRight(n);
+        if (!isRed(n.right) && !isRed(n.right.left))
+            n = moveRedRight(n);
         n.right = deleteMax(n.right);
         return balance(n);
     }
@@ -248,7 +260,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
     // Delete key/value pair
     public void delete(Key k)
     {
-        if (!isRed(root.left) && !isRed(root.right)) root.color = RED;
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
         root = delete(root, k);
         if (!isEmpty()) root.color = BLACK;
     }
@@ -257,13 +270,17 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
     {
         if (k.compareTo(n.key) < 0)
         {
-            if (!isRed(n.left) && !isRed(n.left.left)) n = moveRedLeft(n);
+            if (!isRed(n.left) && !isRed(n.left.left))
+                n = moveRedLeft(n);
             n.left = delete(n.left, k);
         } else
         {
-            if (isRed(n.left)) n = rotateRight(n);
-            if (k.compareTo(n.key) == 0 && n.right == null) return null;
-            if (!isRed(n.right) && !isRed(n.right.left)) n = moveRedRight(n);
+            if (isRed(n.left))
+                n = rotateRight(n);
+            if (k.compareTo(n.key) == 0 && n.right == null)
+                return null;
+            if (!isRed(n.right) && !isRed(n.right.left))
+                n = moveRedRight(n);
             if (k.compareTo(n.key) == 0)
             {
                 Node m = min(n.right);

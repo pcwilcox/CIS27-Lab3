@@ -18,10 +18,7 @@ public class DictionaryTester
         System.out.println(dict.match("sucecss"));
         System.out.println(dict.match("pple"));
         System.out.println(dict.match("sbaseball"));
-
     }
-
-
 }
 
 /* Program Output:
@@ -30,32 +27,18 @@ Creating dictionary...
 Testing aardvark
 aardvark
 Testing mtah
-
 math
-
 Testing wette
-
 wetted
 wetter
-
 Testing objectvie
-
 objective
-
 Testing itnerview
-
 interview
-
 Testing sucecss
-
 success
-
 Testing pple
-
 apple
-
 Testing sbaseball
-
 baseball
-
  */

@@ -8,14 +8,15 @@ import java.util.Scanner;
 /**
  * Created by Pete Wilcox on 4/23/2016.
  * petercwilcox@gmail.com
- * <p>
+ *
  * Hashmap dictionary-based spellchecker.
  */
 public class Dictionary
 {
     private int           M;
     private ListOfWords[] words;
-    private static final String chars = "abcdefghijklmnopqrstuvwxyz";
+    private static final String chars
+            = "abcdefghijklmnopqrstuvwxyz";
 
     public Dictionary()
     {
@@ -72,7 +73,8 @@ public class Dictionary
         return (String) words[hash(word)].get(word);
     }
 
-    // Search for a word in the dictionary, if it's not found, find alternatives
+    // Search for a word in the dictionary,
+    // if it's not found, find alternatives
     public String match(String input)
     {
         System.out.println("Testing " + input);
@@ -86,7 +88,8 @@ public class Dictionary
     // Try to modify the input to find valid words
     private String mix(String input)
     {
-        ArrayList<String> outputBuilder = new ArrayList<>();
+        ArrayList<String> outputBuilder
+                = new ArrayList<>();
         String            output        = "";
         outputBuilder.add(addFirst(input));
         outputBuilder.add(addLast(input));
@@ -111,9 +114,13 @@ public class Dictionary
         String output = "";
         for (int i = 0; i < 26; i++)
         {
-            if (get(chars.substring(i, i + 1) + input) != null)
+            if (get(chars.substring(i, i + 1) +
+                    input) != null)
             {
-                output = output + get(chars.substring(i, i + 1) + input) + "\n";
+                output = output +
+                         get(chars.substring(i, i + 1) +
+                             input) +
+                         "\n";
             }
         }
         return output;
@@ -125,9 +132,13 @@ public class Dictionary
         String output = "";
         for (int i = 0; i < 26; i++)
         {
-            if (get(input + chars.substring(i, i + 1)) != null)
+            if (get(input +
+                    chars.substring(i, i + 1)) != null)
             {
-                output = output + get(input + chars.substring(i, i + 1)) + "\n";
+                output = output +
+                         get(input +
+                             chars.substring(i, i + 1)) +
+                         "\n";
             }
         }
         return output;
@@ -142,7 +153,8 @@ public class Dictionary
     // Remove last letter
     private String removeLast(String input)
     {
-        return get(input.substring(input.length() - 1, input.length()));
+        return get(input.substring(input.length() - 1,
+                                   input.length()));
     }
 
     // Swap adjacent characters
