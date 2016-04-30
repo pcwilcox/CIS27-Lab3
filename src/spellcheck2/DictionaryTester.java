@@ -15,7 +15,11 @@ public class DictionaryTester
         System.out.println(dict.match("aardvark"));
         System.out.println(dict.match("mtah"));
         System.out.println(dict.match("wette"));
-
+        System.out.println(dict.match("objectvie"));
+        System.out.println(dict.match("itnerview"));
+        System.out.println(dict.match("sucecss"));
+        System.out.println(dict.match("pple"));
+        System.out.println(dict.match("sbaseball"));
 
     }
 

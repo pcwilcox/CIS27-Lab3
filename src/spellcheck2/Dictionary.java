@@ -37,7 +37,7 @@ public class Dictionary
     // Load dictionary data from a file
     private void readWords()
     {
-        File wordlist = new File("C:\\Users\\Lord Yod\\IdeaProjects\\CIS27-Lab3\\src\\spellcheck2\\words.txt");
+        File wordlist = new File("C:\\Users\\Pete\\IdeaProjects\\CIS27-Lab3\\src\\spellcheck2\\words.txt");
 
         try
         {
