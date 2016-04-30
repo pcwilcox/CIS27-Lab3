@@ -36,6 +36,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return n.color == RED;
     }
 
+    // Helper for balancing
     Node rotateLeft(Node h)
     {
         Node n = h.right;
@@ -48,6 +49,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return n;
     }
 
+    // Helper for balancing
     Node rotateRight(Node h)
     {
         Node n = h.left;
@@ -60,11 +62,13 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return n;
     }
 
+    // Get value based on key
     public Value get(Key k)
     {
         return get(root, k);
     }
 
+    // Recursive helper method
     private Value get(Node n, Key k)
     {
         if (n == null) return null;
@@ -74,6 +78,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         else return n.val;
     }
 
+    // Return largest key smaller than this key
     public Key floor(Key k)
     {
         Node n = floor(root, k);
@@ -81,6 +86,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return n.key;
     }
 
+    // Recursive helper method
     private Node floor(Node n, Key k)
     {
         if (n == null) return null;
@@ -92,11 +98,13 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         else return n;
     }
 
+    // Return nth-largest key
     public Key select(int k)
     {
         return select(root, k).key;
     }
 
+    // recursive helper method
     private Node select(Node n, int k)
     {
         if (n == null) return null;
@@ -106,11 +114,13 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         else return n;
     }
 
+    // Return rank of given key
     public int rank(Key k)
     {
         return rank(k, root);
     }
 
+    // Recursive helper method
     private int rank(Key k, Node n)
     {
         if (n == null) return 0;
@@ -124,12 +134,13 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return toStringHelper(root);
     }
 
+    // In-order string converter
     private String toStringHelper(Node n) {
         if (n == null) return "";
         return toStringHelper(n.left) + "[" + n.key + "," + n.weight + "," + n.color + "]" + toStringHelper(n.right);
     }
 
-
+    // Return size of tree
     public int size()
     {
         return size(root);
@@ -142,6 +153,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return n.weight;
     }
 
+    // Add key/value pair to tree, if key exists, update value
     public void put(Key k, Value v)
     {
         root = put(root, k, v);
@@ -233,6 +245,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return balance(n);
     }
 
+    // Delete key/value pair
     public void delete(Key k)
     {
         if (!isRed(root.left) && !isRed(root.right)) root.color = RED;
@@ -262,6 +275,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
         return balance(n);
     }
 
+    // Helper method returns smallest child of given node
     private Node min(Node n)
     {
         if (n.left == null) return n;

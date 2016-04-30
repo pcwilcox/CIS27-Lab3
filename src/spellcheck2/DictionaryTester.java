@@ -1,7 +1,5 @@
 package spellcheck2;
 
-import java.util.Random;
-
 /**
  * Created by Pete Wilcox on 4/23/2016.
  * petercwilcox@gmail.com
@@ -25,3 +23,39 @@ public class DictionaryTester
 
 
 }
+
+/* Program Output:
+
+Creating dictionary...
+Testing aardvark
+aardvark
+Testing mtah
+
+math
+
+Testing wette
+
+wetted
+wetter
+
+Testing objectvie
+
+objective
+
+Testing itnerview
+
+interview
+
+Testing sucecss
+
+success
+
+Testing pple
+
+apple
+
+Testing sbaseball
+
+baseball
+
+ */
